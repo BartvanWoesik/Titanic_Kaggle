@@ -1,0 +1,2 @@
+"0","mse.cv = (apply(cv.errors,2, mean))"
+"0","plot(mse.cv,xlab = ""Number of variables"", ylab = ""Average MSE for all folds"", type=""o"")"

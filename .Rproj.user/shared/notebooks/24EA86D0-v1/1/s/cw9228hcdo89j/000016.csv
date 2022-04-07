@@ -1,0 +1,4 @@
+"0","test_data <- read.csv(""test_titanic.csv"")"
+"0","test_data$Name <- test_data$Ticket <- test_data$Embarked <- test_data$X <- NULL"
+"0","test_data$Survived <- 0"
+"0","test_data$Survived <- predict(best.fit, test_data, id=4)"

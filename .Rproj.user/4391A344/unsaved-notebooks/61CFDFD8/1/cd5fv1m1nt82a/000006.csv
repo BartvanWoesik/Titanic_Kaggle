@@ -1,0 +1,2 @@
+"0","test_data$Survived <- 0"
+"0","test_data$Survived <- predict(best.fit, test_data, id=5)"

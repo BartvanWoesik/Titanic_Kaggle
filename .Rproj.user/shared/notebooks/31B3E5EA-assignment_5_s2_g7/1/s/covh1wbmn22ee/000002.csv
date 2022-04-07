@@ -1,0 +1,25 @@
+"0","```r
+
+famsize_ <- as.numeric(df_train$reason)
+famsize_g <- as.numeric(df_train$reason)
+famsize_g[famsize_ == 1] <- 1
+famsize_g[famsize_ == 2] <- 0
+famsize_g[famsize_ == 3] <- 0
+famsize_g[famsize_ == 4] <- 0
+df_train$re_rep <- famsize_g
+
+famsize_l <- as.numeric(df_train$reason)
+famsize_l[famsize_ == 1] <- 0
+famsize_l[famsize_ == 2] <- 1
+famsize_l[famsize_ == 3] <- 0
+famsize_l[famsize_ == 4] <- 0
+df_train$re_home <- famsize_l
+
+famsize_l <- as.numeric(df_train$reason)
+famsize_ <- as.numeric(df_train$reason)
+famsize_l[famsize_ == 1] <- 0
+famsize_l[famsize_ == 2] <- 0
+famsize_l[famsize_ == 3] <- 1
+famsize_l[famsize_ == 4] <- 0
+df_train$re_cours <- famsize_l
+```"

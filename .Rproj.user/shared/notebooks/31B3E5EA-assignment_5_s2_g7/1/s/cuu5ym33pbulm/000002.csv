@@ -1,0 +1,15 @@
+"0","```r
+#Change the boolean attributes to numeric values for test data
+df_test$school <- (as.numeric(df_test$school))
+df_test$schoolsup <- (as.numeric(df_test$schoolsup))
+df_test$famsup <- (as.numeric(df_test$famsup))
+df_test$paid <- (as.numeric(df_test$paid))
+df_test$activities <- (as.numeric(df_test$activities))
+df_test$nursery <- (as.numeric(df_test$nursery))
+df_test$higher <- (as.numeric(df_test$higher))
+df_test$internet <- (as.numeric(df_test$internet))
+df_test$romantic <- (as.numeric(df_test$romantic))
+df_test$guardian <- as.numeric(df_test$guardian)
+df_test$sex <- as.numeric(df_test$sex)
+df_test$address <- as.numeric(df_test$address)
+```"

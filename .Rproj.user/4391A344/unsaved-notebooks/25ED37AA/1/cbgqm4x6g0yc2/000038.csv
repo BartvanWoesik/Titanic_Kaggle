@@ -1,0 +1,6 @@
+"0","mse.cv = (apply(cv.errors,2, mean))"
+"0","plot(cv.errors,xlab = ""Folds"", ylab = ""Average MSE for all folds"", type=""o"")"
+"2","no non-missing arguments to min; returning Inf"
+"2","no non-missing arguments to max; returning -Inf"
+"2","Error in plot.window(...) : need finite 'ylim' values
+"

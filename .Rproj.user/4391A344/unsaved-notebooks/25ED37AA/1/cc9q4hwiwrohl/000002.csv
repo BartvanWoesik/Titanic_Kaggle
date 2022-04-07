@@ -1,0 +1,4 @@
+"0","test_data$Sex <- sapply(test_data$Sex, unclass)"
+"0","train_data$Sex <- sapply(train_data$Sex, unclass)"
+"0","test_data$Embarked <- sapply(test_data$Embarked, unclass)"
+"0","train_data$Embarked <- sapply(train_data$Embarked, unclass)"

@@ -1,0 +1,7 @@
+"0",""
+"0","for(k in 1:10){"
+"0","  best.fit=regsubsets(score~.,data = df_train[folds !=k,], nvmax = 28, method = ""forward"")"
+"0","  pred = predict(best.fit, df_train[folds == k,], id=10)"
+"0","}"
+"2","Error in is.data.frame(data) : object 'df_train' not found
+"

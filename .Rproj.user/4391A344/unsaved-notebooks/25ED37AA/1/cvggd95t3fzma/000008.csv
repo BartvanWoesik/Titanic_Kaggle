@@ -1,0 +1,22 @@
+"0","#import libraries"
+"0","library(tidyverse)"
+"0","library(e1071)"
+"0","library(GGally)"
+"0","library(leaps)"
+"0","library(mice)"
+"0","library(rpart)"
+"0","library(xgboost)"
+"2","package ‘xgboost’ was built under R version 3.6.3"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","
+Attaching package: ‘xgboost’
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    slice
+
+"

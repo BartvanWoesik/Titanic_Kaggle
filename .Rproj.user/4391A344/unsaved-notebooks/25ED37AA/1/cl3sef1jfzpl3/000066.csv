@@ -1,0 +1,15 @@
+"0",""
+"0",""
+"0",""
+"0",""
+"0",""
+"0",""
+"0","best.fit<- xgboost(data = data, "
+"0","                       label = df$Survived[folds!=k], "
+"0","                       nrounds = 25,"
+"0","                       objective = ""binary:logistic"","
+"0","             "
+"0","                       eval_metric = ""merror"")"
+"2","Error in xgb.iter.eval(bst$handle, watchlist, iteration - 1, feval) : 
+  [16:20:14] amalgamation/../src/metric/multiclass_metric.cu:32: Check failed: label_error >= 0 && label_error < static_cast<int32_t>(n_class): MultiClassEvaluation: label must be in [0, num_class), num_class=1 but found 1 in label
+"

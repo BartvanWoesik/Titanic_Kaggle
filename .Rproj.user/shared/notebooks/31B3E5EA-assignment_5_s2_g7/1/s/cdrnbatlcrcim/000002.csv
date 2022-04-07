@@ -1,0 +1,8 @@
+"0","```r
+#Load the libraries and Data
+library(tidyverse)
+library(e1071)
+library(GGally)
+df_train <- read_rds(\"train.rds\")
+df_test  <- read_rds(\"test.rds\")
+```"

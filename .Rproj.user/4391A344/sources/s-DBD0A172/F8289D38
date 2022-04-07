@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1634154491144.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F8289D38",
+    "lastKnownWriteTime" : 8314045280926310432,
+    "last_content_update" : 1634154491144,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "CAF42034",
+        "caption" : "train_titanic",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=train_titanic&cache_key=CAF42034",
+        "displayedObservations" : 889,
+        "environment" : "",
+        "expression" : "train_titanic",
+        "object" : "train_titanic",
+        "preview" : 0,
+        "totalObservations" : 889,
+        "variables" : 11
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

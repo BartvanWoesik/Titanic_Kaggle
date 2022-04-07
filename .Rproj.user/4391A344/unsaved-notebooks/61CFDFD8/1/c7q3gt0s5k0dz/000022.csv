@@ -1,0 +1,5 @@
+"0",""
+"0",""
+"0","train_data$Age[is.na(train_data$Age)] <- mean(train_data$Age[!is.na(train_data$Age)])"
+"0","test_data$Age[is.na(test_data$Age)] <- mean(train_data$Age[!is.na(train_data$Age)])"
+"0","test_data$Fare[is.na(test_data$Fare)] <-mean(train_data$Fare[!is.na(train_data$Fare)])"

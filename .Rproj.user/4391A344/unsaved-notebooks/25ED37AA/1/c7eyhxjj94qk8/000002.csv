@@ -1,0 +1,2 @@
+"0","labels = df$Survived[folds!=k]"
+"0","data = as.matrix(df[folds !=k,-1])"

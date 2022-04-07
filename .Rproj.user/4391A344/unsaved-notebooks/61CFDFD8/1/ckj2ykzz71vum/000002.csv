@@ -1,0 +1,5 @@
+"0","mean(train_data$Age[!is.na(train_data$Age)])"
+"1","[1]"
+"1"," 29.69912"
+"1","
+"

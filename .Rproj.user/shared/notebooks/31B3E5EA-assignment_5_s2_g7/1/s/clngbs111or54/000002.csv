@@ -1,0 +1,4 @@
+"0","```r
+df_test$score <-0
+df_test$score = as.vector(predict(best.fit, df_test, id=10))
+```"

@@ -1,0 +1,6 @@
+"0","#load data sets"
+"0",""
+"0","test_data <- read.csv(""test.csv"")"
+"0","train_data <- read.csv(""train.csv"")"
+"0",""
+"0",""

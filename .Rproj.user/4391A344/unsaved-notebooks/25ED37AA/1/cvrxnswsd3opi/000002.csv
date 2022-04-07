@@ -1,0 +1,4 @@
+"0","for(k in 1:5){"
+"0","  best.fit=regsubsets(Survived~.,data = train_data[folds !=k,], nvmax = 9, method = ""forward"")"
+"0","  pred = predict(best.fit, train_data, id=4)"
+"0","}"

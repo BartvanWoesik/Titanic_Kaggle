@@ -1,0 +1,109 @@
+```{r}
+train_data_titanic <- read.csv("titanic_train_data.csv")
+```
+
+```{r}
+train_data_titanic$Name <- train_data_titanic$Ticket <- train_data_titanic$Embarked <- train_data_titanic$X <- train_data_titanic$PassengerId <- NULL
+```
+
+```{r}
+library(tidyverse)
+library(e1071)
+library(GGally)
+library(leaps)
+
+```
+```{r}
+train_titanic <- train_data_titanic[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14)]
+
+```
+
+```{r}
+predict.regsubsets = function(object, newdata,id,...){
+  form = as.formula(object$call[[2]])
+  mat = model.matrix(form, newdata)
+  coefi = coef(object, id = id)
+
+  mat[,names(coefi)]%*%coefi
+  
+}
+```
+
+```{r}
+set.seed(7)
+folds = sample(rep(1:10, length =nrow(train_titanic)))
+table(folds)
+```
+
+```{r}
+cv.errors = matrix(NA,10,13)
+for(k in 1:10){
+  best.fit=regsubsets(Survived~.,data = train_titanic[folds !=k,], nvmax = 13, method = "forward")
+  for(i in 1:13){
+    pred = predict(best.fit, train_titanic[folds == k,], id=i)
+    cv.errors[k,i]= mean((train_titanic$Survived[folds==k]- pred)^2)
+
+ 
+    
+  }
+  
+}
+
+
+
+```
+
+```{r}
+mse.cv = (apply(cv.errors,2, mean))
+plot(mse.cv,xlab = "Number of variables", ylab = "Average MSE for all folds", type="o")
+```
+```{r}
+for(k in 1:10){
+  best.fit=regsubsets(Survived~.,data = train_titanic[folds !=k,], nvmax = 13, method = "forward")
+  pred = predict(best.fit, train_titanic, id=4)
+}
+
+pred2 = apply(pred,1,mean)
+mean((train_titanic$Survived- pred2)^2)
+```
+```{r}
+test_data <- read.csv("test_titanic.csv")
+test_data$Name <- test_data$Ticket <- test_data$Embarked <- test_data$X <- NULL
+test_data$Survived <- 0
+test_data$Survived <- predict(best.fit, test_data, id=4)
+```
+```{r}
+sigmoid = function(x) {
+   1 / (1 + exp(-x))
+}
+```
+
+
+
+```{r}
+
+
+awns <- data.frame(1:418)
+
+awns$PassengerId <- test_data$PassengerId
+awns$Survived <- test_data$Survived
+
+```
+```{r}
+for(i in 1:nrow(awns)){
+  if(awns$Survived[i] >= 0.5){
+    
+    awns$Survived[i] <- 1
+  }
+  else{
+    awns$Survived[i] <- 0
+  }
+  
+}
+awns$X1.418 <- NULL
+```
+
+```{r}
+write.csv(awns, "awnser2.csv")
+```
+

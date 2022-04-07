@@ -1,0 +1,5 @@
+"0","write.csv(awns, ""awnser2.csv"")"
+"2","cannot open file 'awnser2.csv': Permission denied"
+"2","Error in file(file, ifelse(append, ""a"", ""w"")) : 
+  cannot open the connection
+"

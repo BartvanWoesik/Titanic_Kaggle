@@ -1,0 +1,216 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+#import libraries
+library(tidyverse)
+library(e1071)
+library(GGally)
+library(leaps)
+library(mice)
+library(rpart)
+library(xgboost)
+```
+
+
+
+```{r}
+#load data sets
+
+test_data <- read.csv("test.csv")
+train_data <- read.csv("train.csv")
+
+
+```
+
+
+```{r}
+train_data$new_name <- 5
+test_data$new_name <- 5
+
+
+
+change_name <- function(object){
+  for(i in 1:nrow(object)){
+    if(grepl( "Mr", object[i,'Name'], fixed = TRUE )){
+      object$new_name[i] <- 4
+    }
+    if(grepl( "Mrs", object[i,'Name'], fixed = TRUE )){
+      object$new_name[i] <- 0
+    }
+    if(grepl( "miss", object[i,'Name'], fixed = TRUE )){
+      object$new_name[i] <- 1
+    }
+    if(grepl( "master", object[i,'Name'], fixed = TRUE )){
+      object$new_name[i] <- 3
+    }
+    
+    
+   
+  }
+  return(object$nw_name)
+}
+test_data$new_name <- change_name(test_data)
+train_data$new_name <- change_name(train_data)
+```
+
+
+```{r}
+train_data$Ticket <-  train_data$Cabin <- NULL
+test_data$Ticket <- test_data$Cabin <- NULL
+
+test_data$Name <- NULL
+train_data$Name <- NULL
+```
+
+```{r}
+test_data$Sex <- sapply(test_data$Sex, unclass)
+train_data$Sex <- sapply(train_data$Sex, unclass)
+test_data$Embarked <- sapply(test_data$Embarked, unclass)
+train_data$Embarked <- sapply(train_data$Embarked, unclass)
+```
+
+
+
+
+
+```{r}
+set.seed(12)
+folds = sample(rep(1:10, length =nrow(train_data)))
+table(folds)
+```
+
+
+```{r}
+predict.regsubsets = function(object, newdata,id,...){
+  form = as.formula(object$call[[2]])
+  mat = model.matrix(form, newdata)
+  coefi = coef(object, id = id)
+
+  mat[,names(coefi)]%*%coefi
+  
+}
+```
+```{r}
+mice_train <- mice(train_data, method = "norm.nob")
+df <- complete(mice_train, c(1:5))
+```
+
+```{r}
+labels = df$Survived[folds!=k]
+data = as.matrix(df[folds !=k,-1])
+```
+
+```{r}
+
+
+
+
+
+
+best.fit<- xgboost(data = data, 
+                       label = df$Survived[folds!=k], 
+                       nrounds = 25,
+                       objective = "binary:logistic",
+             
+                       eval_metric = "merror")
+   
+ 
+
+ 
+    
+    
+  
+
+
+
+```
+```{r}
+df[folds !=k, "Survived"]
+```
+
+
+```{r}
+xgb.DMatrix(as.matrix(df[folds !=k,], -1))
+```
+
+
+```{r}
+mse.cv = (apply(cv.errors,2, mean))
+plot(cv.errors,xlab = "Folds", ylab = "Average MSE for all folds", type="o")
+```
+
+
+
+
+
+
+```{r}
+for(k in 1:5){
+  best.fit=regsubsets(Survived~.,data = train_data[folds !=k,], nvmax = 9, method = "forward")
+  pred = predict(best.fit, train_data, id=4)
+}
+```
+
+```{r}
+mice_test <- mice(test_data, method = "norm.nob")
+m_test <- complete(mice_test)
+```
+
+
+```{r}
+m_test$Survived <- 0
+test_data$Survived <- predict(best.fit, m_test, id=4)
+```
+
+```{r}
+
+awns <- data.frame(1:418)
+
+awns$PassengerId <- test_data$PassengerId
+awns$Survived <- test_data$Survived
+
+```
+```{r}
+for(i in 1:nrow(awns)){
+  if(awns$Survived[i] >= 0.65){
+    
+    awns$Survived[i] <- 1
+  }
+  else{
+    awns$Survived[i] <- 0
+  }
+  
+}
+awns$X1.418 <- NULL
+```
+
+
+```{r}
+write.csv(awns, "awnser2.csv")
+```
+
+
+
+
+
+```{r}
+
+nrow(df[df$Survived == 1,]) /nrow(df[df$Survived == 0,])
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+

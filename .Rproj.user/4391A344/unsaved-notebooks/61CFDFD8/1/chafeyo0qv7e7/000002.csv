@@ -1,0 +1,6 @@
+"0",""
+"0","awns <- data.frame(1:418)"
+"0",""
+"0","awns$PassengerId <- test_data$PassengerId"
+"0","awns$Survived <- test_data$Survived"
+"0",""
